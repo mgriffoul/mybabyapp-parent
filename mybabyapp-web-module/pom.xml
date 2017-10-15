@@ -31,11 +31,7 @@
 			<artifactId>mybabyapp-user-business</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.app.baby.my</groupId>
-			<artifactId>mybabyapp-user-dao</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 
 
 		<dependency>

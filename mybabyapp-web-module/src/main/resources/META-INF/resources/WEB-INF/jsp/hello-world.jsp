@@ -11,5 +11,8 @@
 <html>
 <body>
 <h1>Hello World - ${message}</h1>
+
+<h2>${user}</h2>
+
 </body>
 </html>

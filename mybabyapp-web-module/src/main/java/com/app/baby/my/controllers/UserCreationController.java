@@ -38,11 +38,9 @@ public class UserCreationController {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "erreur");
 		} else {
-//			creationProcessor.createUser(userCreationModel.getMail(), userCreationModel.getPassword());
-
-			userService.test();
 
 			model.addAttribute("message", "tuttaposto !!");
+			model.addAttribute("user", userService.createUser(userCreationModel.getMail(), userCreationModel.getPassword()));
 		}
 
 		return "hello-world";
