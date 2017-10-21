@@ -1,4 +1,4 @@
-package com.app.baby.my.service.config;
+package com.app.baby.my;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +14,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "com.app.baby.my.dao")
 public class AppliConfigTest {
 
-	/*Classe nécessaire à la créatin d'un contexte d'application dans le scope Test*/
+	/*Classe nécessaire à la création d'un contexte d'application dans le scope Test*/
 
 }

@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class PasswordSaltFactory {
 
+	/**
+	 * Fonction de création d'un sel sous forme de String à partir de la date heure système
+	 * @return
+	 */
 	public String createSalt(){
 		LocalDateTime l = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");

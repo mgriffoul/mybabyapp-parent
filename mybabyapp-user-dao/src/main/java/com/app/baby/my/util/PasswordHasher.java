@@ -8,13 +8,30 @@ import javax.xml.bind.DatatypeConverter;
  */
 public class PasswordHasher {
 
+	/**
+	 * Fonction de hashage d"un mot de passe et d'un sel.
+	 * @param password
+	 * @param salt
+	 * @return
+	 * @throws Exception
+	 */
 	public String ashPassword(String password, String salt) throws Exception{
-		StringBuilder sb = new StringBuilder();
-		sb.append(hashString(password));
-		sb.append(hashString(salt));
-		return hashString(sb.toString());
+		if(password != null && salt != null){
+			StringBuilder sb = new StringBuilder();
+			sb.append(hashString(password));
+			sb.append(hashString(salt));
+			return hashString(sb.toString());
+		}else {
+			return "";
+		}
 	}
 
+	/**
+	 * Fonction de hashage en SHA-256
+	 * @param s
+	 * @return
+	 * @throws Exception
+	 */
 	private String hashString(String s) throws Exception{
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		byte[] hash = digest.digest(s.getBytes("UTF-8"));
