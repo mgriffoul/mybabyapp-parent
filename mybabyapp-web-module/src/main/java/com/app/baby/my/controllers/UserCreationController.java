@@ -1,5 +1,7 @@
 package com.app.baby.my.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.app.baby.my.models.UserCreationModel;
 import com.app.baby.my.services.IUserService;
 import com.app.baby.my.validators.UserCreationValidator;
+import com.mongodb.MongoException;
 
 /**
  * Created by mathieu_griffoul on 15/10/2017.
@@ -17,6 +20,8 @@ import com.app.baby.my.validators.UserCreationValidator;
 @Controller
 @RequestMapping(value = ("/sign-up"))
 public class UserCreationController {
+
+	Logger logger = LoggerFactory.getLogger(UserCreationController.class);
 
 	@Autowired
 	private UserCreationValidator creationValidator;
@@ -42,11 +47,12 @@ public class UserCreationController {
 				model.put("user", userService.createUser(userCreationModel.getMail(), userCreationModel.getPassword()));
 				model.addAttribute("message", "tuttaposto !!");
 				return "confirm";
-			} catch(Exception e) {
-				//TODO
-				//Traiter les exceptions
-
-				e.printStackTrace();
+			} catch(MongoException m) {
+				logger.error("La création du compte a échoué. Mongo Exception.");
+				model.addAttribute("message", "Mongo erreur");
+			} catch(java.lang.Exception jl) {
+				logger.error("La création du compte a échoué. Mongo Exception.");
+				jl.printStackTrace();
 			}
 
 		}
