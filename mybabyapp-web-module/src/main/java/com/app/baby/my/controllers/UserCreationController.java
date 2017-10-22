@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.app.baby.my.models.UserCreationModel;
 import com.app.baby.my.services.IUserService;
 import com.app.baby.my.validators.UserCreationValidator;
-import com.mongodb.MongoException;
 
 /**
  * Created by mathieu_griffoul on 15/10/2017.
@@ -47,14 +46,10 @@ public class UserCreationController {
 				model.put("user", userService.createUser(userCreationModel.getMail(), userCreationModel.getPassword()));
 				model.addAttribute("message", "tuttaposto !!");
 				return "confirm";
-			} catch(MongoException m) {
-				logger.error("La création du compte a échoué. Mongo Exception.");
+			} catch(Exception e) {
+				logger.error("La création du compte a échoué.");
 				model.addAttribute("message", "Mongo erreur");
-			} catch(java.lang.Exception jl) {
-				logger.error("La création du compte a échoué. Mongo Exception.");
-				jl.printStackTrace();
 			}
-
 		}
 
 		return "hello-world";
