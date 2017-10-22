@@ -34,12 +34,20 @@ public class UserCreationController {
 		return "sign-up";
 	}
 
+	/**
+	 * Methode de création d'un user
+	 * @param userCreationModel
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, value = ("signupuser"))
 	public String signUpUser(@ModelAttribute("userCreationModel") UserCreationModel userCreationModel, BindingResult result, ModelMap model) {
 
 		creationValidator.validate(userCreationModel, result);
 
 		if (result.hasErrors()) {
+			logger.error("Binding result found errors");
 			model.addAttribute("message", "erreur");
 		} else {
 			try {
@@ -52,7 +60,7 @@ public class UserCreationController {
 			}
 		}
 
-		return "hello-world";
+		return "sign-up";
 	}
 
 }

@@ -17,4 +17,11 @@ public interface IUserDaoService {
 	 */
 	public User createUser(String mail, String password) throws Exception;
 
+	/**
+	 * Méthode de recherche d'un utilisateur par son adresse email
+	 * @param mail
+	 * @return
+	 */
+	public User findUserByMail(String mail);
+
 }

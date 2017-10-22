@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 
 
@@ -22,26 +23,27 @@
 <h1>Inscription</h1>
 
 
-<form:form method = "POST" action = "/sign-up/signupuser" commandName="userCreationModel">
+<form:form method="POST" action="/sign-up/signupuser" commandName="userCreationModel">
 
 
-	<form:label path = "mail">mail</form:label>
-	<form:input path = "mail" />
+	<form:label path="mail">mail</form:label>
+	<form:input path="mail"/>
 
 
-	<form:label path = "password">pass</form:label>
-	<form:input path = "password" />
+	<form:label path="password">mot de passe</form:label>
+	<form:input path="password"/>
+
+	<form:label path="passwordConfirm">Confirmez votre mot de passe</form:label>
+	<form:input path="passwordConfirm"/>
 
 
+	<input type="submit" value="Submit"/>
 
 
-
-	<input type = "submit" value = "Submit"/>
-
-
-
+	<p>
+		<springForm:errors path="*" cssClass="error" cssStyle="color: red"/>
+	</p>
 </form:form>
-
 
 
 <%--<script src="js/scripts.js"></script>--%>

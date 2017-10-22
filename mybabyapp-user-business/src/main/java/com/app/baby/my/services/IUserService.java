@@ -9,4 +9,6 @@ public interface IUserService {
 
 	public UserDto createUser(String mail, String password) throws Exception;
 
+	public UserDto finUserByMail(String mail);
+
 }

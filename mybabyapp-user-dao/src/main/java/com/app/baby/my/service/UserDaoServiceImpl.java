@@ -53,4 +53,14 @@ public class UserDaoServiceImpl implements IUserDaoService {
 		}
 		return user;
 	}
+
+	/**
+	 * Méthode de recherche d'un utilisateur par son adresse mail
+	 * @param mail
+	 * @return
+	 */
+	@Override
+	public User findUserByMail(String mail) {
+		return userDao.findByMail(mail);
+	}
 }

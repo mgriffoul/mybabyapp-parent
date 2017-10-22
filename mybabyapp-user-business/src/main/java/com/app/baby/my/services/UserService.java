@@ -22,6 +22,13 @@ public class UserService implements IUserService {
 		this.userDtoMapper = userDtoMapper;
 	}
 
+	/**
+	 * Service de création d'un utilisateur
+	 * @param mail
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public UserDto createUser(String mail, String password) throws Exception{
 		if (StringUtils.isNotBlank(mail) && StringUtils.isNotBlank(password)){
@@ -30,5 +37,16 @@ public class UserService implements IUserService {
 		}else {
 			throw  new MongoException("Le mail et le mot de passe ne peuvent pas être null, vide ou remplit d'espace.");
 		}
+	}
+
+	/**
+	 * Service de recherche d'un utilisateur par son adresse email
+	 * @param mail
+	 * @return
+	 */
+	@Override
+	public UserDto finUserByMail(String mail) {
+		User user = userDaoService.findUserByMail(mail);
+		return userDtoMapper.mapUserEntityToUserDto(user);
 	}
 }
