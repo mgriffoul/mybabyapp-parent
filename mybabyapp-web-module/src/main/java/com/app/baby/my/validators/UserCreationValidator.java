@@ -1,6 +1,7 @@
 package com.app.baby.my.validators;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -41,8 +42,9 @@ public class UserCreationValidator implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mail", "required", "L'adresse mail est obligatoire");
 
-		//Vérification du format du compte
-		if (!mail.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$")) {
+		//Vérification du format du mail
+		EmailValidator emailValidator = EmailValidator.getInstance();
+		if (!emailValidator.isValid(mail)) {
 			errors.rejectValue("mail", "wrong format", "L'adresse mail que vous avez rentré est invalide");
 		}
 
@@ -61,6 +63,10 @@ public class UserCreationValidator implements Validator {
 	private void validatePassword(String password, String passwordConfirm, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required", "Vous n'avez pas rentré de mot de passe");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "required", "Veuillez confirmer votre mot de passe");
+
+		if(password == null || !password.matches("^.{6,}$")){
+			errors.rejectValue("password", "lenght issue", "Votre mot de passe doit faire au moins 6 caractères");
+		}
 
 		if(!StringUtils.equals(password, passwordConfirm)){
 			errors.rejectValue("password", "dont matches", "Vous avez tappé deux mots de passe différents.");

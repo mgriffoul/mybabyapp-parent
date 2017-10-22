@@ -47,7 +47,7 @@ public class UserCreationController {
 		creationValidator.validate(userCreationModel, result);
 
 		if (result.hasErrors()) {
-			logger.error("Binding result found errors");
+			logger.error("Binding result found errors in user creation form");
 			model.addAttribute("message", "erreur");
 		} else {
 			try {
