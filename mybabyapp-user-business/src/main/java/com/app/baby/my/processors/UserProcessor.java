@@ -10,9 +10,4 @@ public class UserProcessor implements IUserProcessor{
 	public UserProcessor() {
 	}
 
-	@Override
-	public UserDto createUserDto(String mail, String password) {
-		return UserDto.userDtoBuilder().mail(mail).password(password).build();
-	}
-
 }

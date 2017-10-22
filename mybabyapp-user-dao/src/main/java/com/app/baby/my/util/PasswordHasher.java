@@ -15,12 +15,17 @@ public class PasswordHasher {
 	 * @return
 	 * @throws Exception
 	 */
-	public String ashPassword(String password, String salt) throws Exception{
+	public String ashPassword(String password, String salt) {
 		if(password != null && salt != null){
 			StringBuilder sb = new StringBuilder();
-			sb.append(hashString(password));
-			sb.append(hashString(salt));
-			return hashString(sb.toString());
+			try {
+				sb.append(hashString(password));
+				sb.append(hashString(salt));
+				return hashString(sb.toString());
+			} catch(Exception e) {
+				e.printStackTrace();
+				return "";
+			}
 		}else {
 			return "";
 		}

@@ -41,7 +41,7 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	 * @throws Exception
 	 */
 	@Override
-	public User createUser(String mail, String password) throws Exception{
+	public User createUser(String mail, String password) {
 		String salt = passwordSaltFactory.createSalt();
 		String hashedPassword = passwordHasher.ashPassword(password, salt);
 		User user = User.userBuilder().mail(mail).salt(salt).password(hashedPassword).build();

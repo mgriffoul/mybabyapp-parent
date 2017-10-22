@@ -43,6 +43,9 @@ public class UserCreationController {
 				model.addAttribute("message", "tuttaposto !!");
 				return "confirm";
 			} catch(Exception e) {
+				//TODO
+				//Traiter les exceptions
+
 				e.printStackTrace();
 			}
 

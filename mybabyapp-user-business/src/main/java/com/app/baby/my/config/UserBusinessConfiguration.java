@@ -16,8 +16,8 @@ import com.app.baby.my.services.UserService;
 public class UserBusinessConfiguration {
 
 	@Bean
-	public IUserService userService(IUserProcessor userProcessor, IUserDaoService userDaoService, UserDtoMapper userDtoMapper) {
-		return new UserService(userProcessor, userDaoService, userDtoMapper);
+	public IUserService userService(IUserDaoService userDaoService, UserDtoMapper userDtoMapper) {
+		return new UserService(userDaoService, userDtoMapper);
 	}
 
 	@Bean

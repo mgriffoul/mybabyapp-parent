@@ -8,12 +8,18 @@ import com.app.baby.my.entity.User;
  */
 public class UserDtoMapper {
 
+	/**
+	 * Fonction de mapping d'un User (entity) en UserDto
+	 * @param userEntity
+	 * @return
+	 */
 	public UserDto mapUserEntityToUserDto(User userEntity){
-
 		UserDto userDto = new UserDto();
-
-		userDto.setMail(userEntity.getMail());
-
+		if(userEntity != null) {
+			if(userEntity.getMail()!=null) {
+				userDto.setMail(userEntity.getMail());
+			}
+		}
 		return userDto;
 	}
 
