@@ -1,7 +1,6 @@
 package com.app.baby.my.controllers;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	@RequestMapping
-	public String init(ModelMap model) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username ;
-		if (principal instanceof UserDetails) {
-			username = ((UserDetails)principal).getUsername();
-		} else {
-			username = principal.toString();
-		}
-		model.addAttribute("userLogin", username);
+	public String init(ModelMap model, Authentication authentication) {
+
+		model.addAttribute("userLogin", authentication.getName());
+		return "home";
+	}
+
+	@RequestMapping(value = "/more")
+	public String more(ModelMap model) {
+
+
 		return "home";
 	}
 
