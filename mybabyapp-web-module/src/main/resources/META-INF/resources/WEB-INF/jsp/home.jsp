@@ -22,34 +22,9 @@
 
 <h1>Inscription</h1>
 
+<h1>Welcome home</h1>
 
-<form:form method="POST" action="/sign-up/signupuser" commandName="userCreationModel">
-
-
-	<form:label path="mail">mail</form:label>
-	<form:input path="mail"/>
-
-
-	<form:label path="password">mot de passe</form:label>
-	<form:input path="password"/>
-
-	<form:label path="passwordConfirm">Confirmez votre mot de passe</form:label>
-	<form:input path="passwordConfirm"/>
-
-	<input type="hidden"
-		   name="${_csrf.parameterName}"
-		   value="${_csrf.token}"/>
-
-	<input type="submit" value="Submit"/>
-
-
-	<p>
-		<springForm:errors path="*" cssClass="error" cssStyle="color: red"/>
-	</p>
-</form:form>
-
-<p><a href="/connect">J'ai déjà un compte</a></p>
-<%--<script src="js/scripts.js"></script>--%>
+<p>${userLogin}</p>
 
 
 </body>

@@ -24,4 +24,14 @@ public interface IUserDaoService {
 	 */
 	public User findUserByMail(String mail);
 
+
+	/**
+	 * Cette méthode sert à checker si un mot de passe et un sel sont bien egaux une fois hashé à un mot de pass sous forme de hash
+	 * @param passwordToCompare
+	 * @param hashedPasswordToCompare
+	 * @param salt
+	 * @return
+	 */
+	public boolean checkPasswordIsOk (String passwordToCompare, String hashedPasswordToCompare, String salt);
+
 }

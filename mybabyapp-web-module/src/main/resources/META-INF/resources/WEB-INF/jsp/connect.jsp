@@ -10,41 +10,34 @@
 <!doctype html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>MyBabyApp/Connection</title>
-	<meta name="description" content="Connection page of Mababyapp">
-	<link rel="stylesheet" href="css/styles.css?v=1.0">
-</head>
 
 <body>
 
 <h1>Connexion</h1>
 
 
-<form:form method = "POST" action = "/connect/connectUser" commandName="userConnexionModel">
+<p style="color: red">${failureMessage}</p>
+
+<form method = "POST" action = "login" name="f">
 
 
-			<form:label path = "mail">mail</form:label>
-			<form:input path = "mail" />
+	<label for="username">Username</label>
+	<input type="text" id="username" name="username"/>
+
+	<label for="password">Password</label>
+	<input type="password" id="password" name="password"/>
+
+	<input type="hidden"
+		   name="${_csrf.parameterName}"
+		   value="${_csrf.token}"/>
+
+	<button type="submit" class="btn">Log in</button>
+
+</form>
+
+<p>Pas encore inscrit ? cliquez <a href="/sign-up">ici</a></p>
 
 
-			<form:label path = "password">pass</form:label>
-			<form:input path = "password" />
-
-
-
-
-
-				<input type = "submit" value = "Submit"/>
-
-
-
-</form:form>
-
-
-
-<%--<script src="js/scripts.js"></script>--%>
 
 
 </body>

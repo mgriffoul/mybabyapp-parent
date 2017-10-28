@@ -7,6 +7,15 @@ public class UserDto {
 
 	private String mail;
 	private String password;
+	private String Salt;
+
+	public String getSalt() {
+		return Salt;
+	}
+
+	public void setSalt(String salt) {
+		Salt = salt;
+	}
 
 	public String getMail() {
 		return mail;
@@ -31,6 +40,7 @@ public class UserDto {
 	public static final class UserDtoBuilder {
 		private String mail;
 		private String password;
+		private String Salt;
 
 		private UserDtoBuilder() {
 		}
@@ -45,10 +55,16 @@ public class UserDto {
 			return this;
 		}
 
+		public UserDtoBuilder Salt(String Salt) {
+			this.Salt = Salt;
+			return this;
+		}
+
 		public UserDto build() {
 			UserDto userDto = new UserDto();
 			userDto.setMail(mail);
 			userDto.setPassword(password);
+			userDto.setSalt(Salt);
 			return userDto;
 		}
 	}
