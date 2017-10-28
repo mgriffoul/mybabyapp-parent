@@ -52,7 +52,6 @@ public class UserCreationController {
 		} else {
 			try {
 				model.put("user", userService.createUser(userCreationModel.getMail(), userCreationModel.getPassword()));
-				model.addAttribute("message", "tuttaposto !!");
 				return "confirm";
 			} catch(Exception e) {
 				logger.error("La création du compte a échoué.");
