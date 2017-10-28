@@ -49,4 +49,9 @@ public class UserService implements IUserService {
 		User user = userDaoService.findUserByMail(mail);
 		return userDtoMapper.mapUserEntityToUserDto(user);
 	}
+
+	@Override
+	public boolean checkPasswordOk(String passwordToCompare, String hashedPasswordToCompare, String salt) {
+		return userDaoService.checkPasswordIsOk(passwordToCompare, hashedPasswordToCompare, salt);
+	}
 }

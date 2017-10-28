@@ -11,4 +11,6 @@ public interface IUserService {
 
 	public UserDto finUserByMail(String mail);
 
+	public boolean checkPasswordOk(String passwordToCompare, String hashedPasswordToCompare, String salt);
+
 }

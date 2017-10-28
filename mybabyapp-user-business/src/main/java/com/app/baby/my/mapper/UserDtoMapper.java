@@ -14,12 +14,21 @@ public class UserDtoMapper {
 	 * @return
 	 */
 	public UserDto mapUserEntityToUserDto(User userEntity){
+
 		UserDto userDto = new UserDto();
+
 		if(userEntity != null) {
 			if(userEntity.getMail()!=null) {
 				userDto.setMail(userEntity.getMail());
 			}
+			if(userEntity.getPassword()!=null){
+				userDto.setPassword(userEntity.getPassword());
+			}
+			if(userEntity.getSalt()!=null){
+				userDto.setSalt(userEntity.getSalt());
+			}
 		}
+
 		return userDto;
 	}
 
