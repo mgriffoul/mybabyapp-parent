@@ -35,7 +35,7 @@
 
 </form>
 
-<p>Pas encore inscrit ? cliquez <a href="/sign-up">ici</a></p>
+<p>Pas encore inscrit ? cliquez <a href="/inscription">ici</a></p>
 
 
 

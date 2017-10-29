@@ -20,7 +20,7 @@ import com.app.baby.my.validators.UserCreationValidator;
  * Created by mathieu_griffoul on 15/10/2017.
  */
 @Controller
-@RequestMapping(value = ("/sign-up"))
+@RequestMapping(value = ("/inscription"))
 public class UserCreationController {
 
 	Logger logger = LoggerFactory.getLogger(UserCreationController.class);
@@ -66,7 +66,7 @@ public class UserCreationController {
 		return "sign-up";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "moreuserinfo")
+	@RequestMapping(method = RequestMethod.POST, value = "preciseinfos")
 	public String moreUserInfo(@ModelAttribute("userInformationsModel") MoreUserInfosModel moreUserInfosModel, ModelMap model,
 							   Authentication authentication, BindingResult result) {
 		if(result.hasErrors()){
@@ -80,5 +80,11 @@ public class UserCreationController {
 		model.addAttribute("sexe", moreUserInfosModel.getSexe());
 
 		return "home";
+	}
+
+	@RequestMapping(value = "vosinformations")
+	public String preciseUserInfo(@ModelAttribute MoreUserInfosModel moreUserInfosModel, ModelMap model) {
+		model.addAttribute("userInformationsModel", moreUserInfosModel);
+		return "sign-up-step-2";
 	}
 }

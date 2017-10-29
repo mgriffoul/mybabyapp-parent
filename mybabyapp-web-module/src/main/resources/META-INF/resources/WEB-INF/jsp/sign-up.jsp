@@ -23,7 +23,7 @@
 <h1>Inscription</h1>
 
 
-<form:form method="POST" action="/sign-up/signupuser" commandName="userCreationModel">
+<form:form method="POST" action="/inscription/signupuser" commandName="userCreationModel">
 
 
 	<form:label path="mail">mail</form:label>
@@ -48,7 +48,7 @@
 	</p>
 </form:form>
 
-<p><a href="/connect">J'ai déjà un compte</a></p>
+<p><a href="/connection">J'ai déjà un compte</a></p>
 <%--<script src="js/scripts.js"></script>--%>
 
 

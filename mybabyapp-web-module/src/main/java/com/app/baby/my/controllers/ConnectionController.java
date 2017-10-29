@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by mathieu_griffoul on 28/10/2017.
  */
 @Controller
-@RequestMapping (value = "/connect")
+@RequestMapping (value = "/connection")
 public class ConnectionController {
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -17,7 +17,7 @@ public class ConnectionController {
 		return "connect";
 	}
 
-	@RequestMapping(value = "/failed", method = RequestMethod.POST)
+	@RequestMapping(value = "/echec", method = RequestMethod.POST)
 	public String failedConnect(ModelMap model){
 		model.addAttribute("failureMessage", "Identifiant ou mot de passe incorrect");
 		return "connect";

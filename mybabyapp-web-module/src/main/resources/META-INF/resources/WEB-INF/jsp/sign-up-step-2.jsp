@@ -24,7 +24,7 @@
 
 <h1>Vos informations</h1>
 
-<form:form method="POST" action="/sign-up/moreuserinfo" commandName="userInformationsModel">
+<form:form method="POST" action="/inscription/preciseinfos" commandName="userInformationsModel">
 
 	<br>
 	<form:label path="firstName">votre prénom</form:label>
