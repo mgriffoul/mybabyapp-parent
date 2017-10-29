@@ -24,13 +24,19 @@
 
 <h1>Welcome home</h1>
 
-<p>${userLogin}</p>
+login : <p>${userLogin}</p>
+name : <p>${userName}</p>
+first name : <p>${userFisrtName}</p>
+baby's sexe : <p>${sexe}</p>
 
-<form:form method="post" action="logout" name="f">
+<c:url var="logoutUrl" value="/logout"/>
+<form:form action="${logoutUrl}"
+		   method="post">
+	<input type="submit"
+		   value="Log out"/>
 	<input type="hidden"
 		   name="${_csrf.parameterName}"
 		   value="${_csrf.token}"/>
-	<button type="submit" class="btn">Deconnexion</button>
 </form:form>
 
 </body>

@@ -30,6 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.successForwardUrl("/home")
 				.failureForwardUrl("/connect/failed").permitAll()
 				.and()
+				.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/connect")
+				.permitAll()
+				.and()
 				.httpBasic();
 	}
 
@@ -42,13 +47,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(customAuthenticationProvider);
 	}
-
-	//	@Bean
-	//	private ViewResolver viewResolver() {
-	//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	//		viewResolver.setPrefix("/WEB-INF/jsp/");
-	//		viewResolver.setSuffix(".jsp");
-	//		return viewResolver;
-	//	}
 
 }

@@ -1,7 +1,7 @@
 package com.app.baby.my.entitys;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.app.baby.my.enums.ESexe;
@@ -14,7 +14,7 @@ public class BabyEntity implements Serializable {
 
 	private String id;
 	private String firstName;
-	private LocalDateTime birthDate;
+	private LocalDate birthDate;
 	private ESexe sexe;
 
 	public String getId() {
@@ -33,11 +33,11 @@ public class BabyEntity implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public LocalDateTime getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDateTime birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -56,7 +56,7 @@ public class BabyEntity implements Serializable {
 	public static final class BabyEntityBuilder {
 		private String id;
 		private String firstName;
-		private LocalDateTime birthDate;
+		private LocalDate birthDate;
 		private ESexe sexe;
 
 		private BabyEntityBuilder() {
@@ -72,7 +72,7 @@ public class BabyEntity implements Serializable {
 			return this;
 		}
 
-		public BabyEntityBuilder birthDate(LocalDateTime birthDate) {
+		public BabyEntityBuilder birthDate(LocalDate birthDate) {
 			this.birthDate = birthDate;
 			return this;
 		}
