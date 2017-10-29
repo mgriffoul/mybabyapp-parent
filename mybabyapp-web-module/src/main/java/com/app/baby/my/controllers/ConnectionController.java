@@ -23,9 +23,4 @@ public class ConnectionController {
 		return "connect";
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPerformed(ModelMap model){
-		return "connect";
-	}
-
 }
