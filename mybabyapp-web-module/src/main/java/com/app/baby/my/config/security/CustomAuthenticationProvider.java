@@ -28,6 +28,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private IUserService userService;
 
+	/**
+	 * fournit la methode d'authentifacation par défaut
+	 * @param authentication
+	 * @return
+	 * @throws AuthenticationException
+	 */
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 

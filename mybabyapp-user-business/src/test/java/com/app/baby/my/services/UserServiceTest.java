@@ -17,6 +17,7 @@ import com.mongodb.MongoException;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 /**
@@ -82,6 +83,26 @@ public class UserServiceTest {
 	@Test(expected = MongoException.class)
 	public void createUser_should_throw_MongoException_if_password_is_only_white_space_composed() throws Exception{
 		UserDto userDto = userService.createUser("mail","        ");
+	}
+
+	@Test
+	public void checkPasswordOk_should_call_userServiceDao_and_return_true_if_userServiceDao_Does() throws Exception {
+		given(userDaoService.checkPasswordIsOk(anyString(), anyString(), anyString())).willReturn(true);
+
+		boolean b = userDaoService.checkPasswordIsOk("password1", "ashedPass", "sel");
+
+		Mockito.verify(userDaoService, times(1)).checkPasswordIsOk(anyString(), anyString(), anyString());
+		Assert.assertTrue(b);
+	}
+
+	@Test
+	public void checkPasswordOk_should_call_userServiceDao_and_return_false_if_userServiceDao_Does() throws Exception {
+		given(userDaoService.checkPasswordIsOk(anyString(), anyString(), anyString())).willReturn(false);
+
+		boolean b = userDaoService.checkPasswordIsOk("password1", "ashedPass", "sel");
+
+		Mockito.verify(userDaoService, times(1)).checkPasswordIsOk(anyString(), anyString(), anyString());
+		Assert.assertFalse(b);
 	}
 
 }

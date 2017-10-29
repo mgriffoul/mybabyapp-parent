@@ -19,8 +19,10 @@ import com.app.baby.my.util.PasswordHasher;
 import com.app.baby.my.util.PasswordSaltFactory;
 import com.mongodb.MongoClientException;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
 
 /**
  * Created by mathieu_griffoul on 21/10/2017.
@@ -86,6 +88,67 @@ public class UserDaoServiceImplTest {
 		Mockito.when(passwordSaltFactory.createSalt()).thenReturn("salt");
 		Mockito.when(passwordHasher.ashPassword(anyString(), anyString())).thenReturn("");
 		User user = userDaoService.createUser(null, null);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_passwordToCompare_isEmpty() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk("", "hashed", "sel");
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_passwordToCompare_isNull() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk(null, "hashed", "sel");
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_hashedPassword_isEmpty() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk("compare", "", "sel");
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_hashedPassword_isNull() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk("compare", null, "sel");
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_salt_isEmpty() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk("compare", "hashed", "");
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_salt_isNull() throws Exception {
+		boolean b = userDaoService.checkPasswordIsOk("compare", "hashed", null);
+		Assert.assertFalse(b);
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_false_if_equals_is_false_in_method() throws Exception {
+		given(passwordHasher.ashPassword(anyString(), anyString())).willReturn("F60C3B27F049AC69E1E21F94A1A04AF6204FC49");
+
+		boolean b = userDaoService.checkPasswordIsOk("password",
+				"F60C3B27F049AC69E1E21F94A1A04AF6204FC4940B2E731FCC9081CC26055A01" ,
+				"sel");
+
+		Mockito.verify(passwordHasher, times(1)).ashPassword(anyString(), anyString());
+		Assert.assertFalse(b);
+
+	}
+
+	@Test
+	public void checkPasswordIsOk_should_return_true_if_equals_is_true_in_method() throws Exception {
+		given(passwordHasher.ashPassword(anyString(), anyString())).willReturn("F60C3B27F049AC69E1E21F94A1A04AF6204FC4940B2E731FCC9081CC26055A01");
+
+		boolean b = userDaoService.checkPasswordIsOk("password",
+				"F60C3B27F049AC69E1E21F94A1A04AF6204FC4940B2E731FCC9081CC26055A01" ,
+				"sel");
+
+		Mockito.verify(passwordHasher, times(1)).ashPassword(anyString(), anyString());
+		Assert.assertTrue(b);
 	}
 
 }

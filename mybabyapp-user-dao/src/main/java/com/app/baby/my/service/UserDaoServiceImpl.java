@@ -11,6 +11,8 @@ import com.app.baby.my.util.PasswordHasher;
 import com.app.baby.my.util.PasswordSaltFactory;
 import com.mongodb.MongoClientException;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 /**
  * Created by mathieu_griffoul on 21/10/2017.
  */
@@ -45,9 +47,9 @@ public class UserDaoServiceImpl implements IUserDaoService {
 		String salt = passwordSaltFactory.createSalt();
 		String hashedPassword = passwordHasher.ashPassword(password, salt);
 		User user = User.userBuilder().mail(mail).salt(salt).password(hashedPassword).build();
-		if(StringUtils.isNotEmpty(hashedPassword)){
+		if (isNotEmpty(hashedPassword)) {
 			userDao.insert(user);
-		}else{
+		} else {
 			logger.error("Echec de l'insertion de l'utilisateur en base, le hashage du mot de passe a rencontré un problème");
 			throw new MongoClientException("Echec de l'insertion de l'utilisateur en base, le hashage du mot de passe a rencontré un problème");
 		}
@@ -56,6 +58,7 @@ public class UserDaoServiceImpl implements IUserDaoService {
 
 	/**
 	 * Méthode de recherche d'un utilisateur par son adresse mail
+	 *
 	 * @param mail
 	 * @return
 	 */
@@ -65,8 +68,9 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	}
 
 	/**
-	 *  Cette méthode sert à checker si un mot de passe et un sel sont bien egaux une fois hashé à un mot de pass sous forme de hash
-	 *  retourne true si oui, false si non
+	 * Cette méthode sert à checker si un mot de passe et un sel sont bien egaux une fois hashé à un mot de pass sous forme de hash
+	 * retourne true si oui, false si non
+	 *
 	 * @param passwordToCompare
 	 * @param hashedPasswordToCompare
 	 * @param salt
@@ -74,13 +78,14 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	 */
 	@Override
 	public boolean checkPasswordIsOk(String passwordToCompare, String hashedPasswordToCompare, String salt) {
-		String passwordToCheck = passwordHasher.ashPassword(passwordToCompare, salt);
 
-		if(StringUtils.equals(passwordToCheck, hashedPasswordToCompare)){
-			return true;
-		}else {
-			return false;
+		if (isNotEmpty(passwordToCompare) && isNotEmpty(salt) && isNotEmpty(hashedPasswordToCompare)) {
+			String passwordToCheck = passwordHasher.ashPassword(passwordToCompare, salt);
+			if (StringUtils.equals(passwordToCheck, hashedPasswordToCompare)) {
+				return true;
+			}
 		}
 
+		return false;
 	}
 }

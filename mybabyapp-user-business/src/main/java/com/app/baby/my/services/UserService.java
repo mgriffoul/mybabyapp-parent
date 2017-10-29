@@ -50,6 +50,13 @@ public class UserService implements IUserService {
 		return userDtoMapper.mapUserEntityToUserDto(user);
 	}
 
+	/**
+	 * Methode pour comparer un password non hashé et son sel à un password hashé
+	 * @param passwordToCompare
+	 * @param hashedPasswordToCompare
+	 * @param salt
+	 * @return
+	 */
 	@Override
 	public boolean checkPasswordOk(String passwordToCompare, String hashedPasswordToCompare, String salt) {
 		return userDaoService.checkPasswordIsOk(passwordToCompare, hashedPasswordToCompare, salt);
