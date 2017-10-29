@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.app.baby.my</groupId>
-	<artifactId>mybabyapp-user-dao</artifactId>
+	<artifactId>mybabyapp-comon-dao-entitys</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mybabyapp-user-dao</name>
-	<description>user dao module</description>
+	<name>mybabyapp-comon-dao-entitys</name>
+	<description>comon dao entitys layer</description>
 
 	<parent>
 		<groupId>com.app.baby.my</groupId>
@@ -25,12 +25,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.app.baby.my</groupId>
-			<artifactId>mybabyapp-comon-dao-entitys</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
@@ -42,9 +36,10 @@
 		</dependency>
 
 		<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<build>

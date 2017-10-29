@@ -1,6 +1,6 @@
 package com.app.baby.my.service;
 
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 
 /**
  * Created by mathieu_griffoul on 21/10/2017.
@@ -15,14 +15,14 @@ public interface IUserDaoService {
 	 * @return
 	 * @throws Exception
 	 */
-	public User createUser(String mail, String password) throws Exception;
+	public UserEntity createUser(String mail, String password) throws Exception;
 
 	/**
 	 * Méthode de recherche d'un utilisateur par son adresse email
 	 * @param mail
 	 * @return
 	 */
-	public User findUserByMail(String mail);
+	public UserEntity findUserByMail(String mail);
 
 
 	/**

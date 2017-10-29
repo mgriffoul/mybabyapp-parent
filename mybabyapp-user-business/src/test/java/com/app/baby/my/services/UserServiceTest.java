@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.app.baby.my.dto.UserDto;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 import com.app.baby.my.mapper.UserDtoMapper;
 import com.app.baby.my.service.UserDaoServiceImpl;
 import com.mongodb.MongoClientException;
@@ -38,12 +38,12 @@ public class UserServiceTest {
 	@Test
 	public void createUser_should_return_UserDto_when_called_with_string_string() throws Exception {
 		given(userDaoService.createUser(anyString(), anyString()))
-				.willReturn(User.userBuilder().build());
-		given(userDtoMapper.mapUserEntityToUserDto(any(User.class))).willReturn(UserDto.userDtoBuilder().build());
+				.willReturn(UserEntity.userEntityBuilder().build());
+		given(userDtoMapper.mapUserEntityToUserDto(any(UserEntity.class))).willReturn(UserDto.userDtoBuilder().build());
 
 		UserDto userDto = userService.createUser("mail","pass");
 
-		Mockito.verify(userDtoMapper).mapUserEntityToUserDto(any(User.class));
+		Mockito.verify(userDtoMapper).mapUserEntityToUserDto(any(UserEntity.class));
 		Mockito.verify(userDaoService).createUser(anyString(), anyString());
 		Assert.assertNotNull(userDto);
 

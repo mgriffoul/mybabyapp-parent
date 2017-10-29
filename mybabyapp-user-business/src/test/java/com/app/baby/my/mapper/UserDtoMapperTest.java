@@ -8,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.app.baby.my.dto.UserDto;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 
 /**
  * Created by mathieu_griffoul on 22/10/2017.
@@ -23,7 +23,7 @@ public class UserDtoMapperTest {
 
 	@Test
 	public void mapUserEntityToUserDto_should_return_set_UserDto_when_called_with_User() throws Exception {
-		User user = User.userBuilder().mail("mail").build();
+		UserEntity user = UserEntity.userEntityBuilder().mail("mail").build();
 		UserDto userDto = userDtoMapper.mapUserEntityToUserDto(user);
 
 		Assert.assertEquals(userDto.getMail(), "mail");

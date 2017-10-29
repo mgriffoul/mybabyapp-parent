@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.app.baby.my.AppliConfigTest;
 import com.app.baby.my.dao.IUserDao;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 import com.app.baby.my.util.PasswordHasher;
 import com.app.baby.my.util.PasswordSaltFactory;
 import com.mongodb.MongoClientException;
@@ -54,16 +54,16 @@ public class UserDaoServiceImplTest {
 	public void createUser_should_return_new_user_with_mail_salt_and_password() throws Exception {
 		Mockito.when(passwordSaltFactory.createSalt()).thenReturn("salt");
 		Mockito.when(passwordHasher.ashPassword(anyString(), anyString())).thenReturn("ashedPass");
-		Mockito.when(userDao.insert(any(User.class))).thenReturn(new User());
+		Mockito.when(userDao.insert(any(UserEntity.class))).thenReturn(new UserEntity());
 
-		User user = userDaoService.createUser("aString", "otherString");
+		UserEntity user = userDaoService.createUser("aString", "otherString");
 
 		Assert.assertNotNull(user);
 		Assert.assertEquals("salt", user.getSalt());
 		Assert.assertEquals("ashedPass", user.getPassword());
 		Assert.assertEquals(user.getMail(), "aString");
 		Assert.assertEquals(user.getPassword(), "ashedPass");
-		Mockito.verify(userDao).insert(any(User.class));
+		Mockito.verify(userDao).insert(any(UserEntity.class));
 		Mockito.verify(passwordHasher).ashPassword(anyString(), anyString());
 		Mockito.verify(passwordSaltFactory).createSalt();
 
@@ -75,9 +75,9 @@ public class UserDaoServiceImplTest {
 	public void createUser_should_throw_exception_if_problem_occurs_while_hashing() throws Exception {
 		Mockito.when(passwordSaltFactory.createSalt()).thenReturn("salt");
 		Mockito.doThrow(Exception.class).when(passwordHasher.ashPassword(anyString(), anyString()));
-		Mockito.when(userDao.insert(any(User.class))).thenReturn(new User());
+		Mockito.when(userDao.insert(any(UserEntity.class))).thenReturn(new UserEntity());
 
-		User user = userDaoService.createUser("aString", "otherString");
+		UserEntity user = userDaoService.createUser("aString", "otherString");
 
 		logger.info("createUser_should_throw_exception_if_problem_occurs_while_hashing passed with success");
 
@@ -87,7 +87,7 @@ public class UserDaoServiceImplTest {
 	public void createUser_should_throw_MongoException_if_hashedPassword_is_empty() throws Exception {
 		Mockito.when(passwordSaltFactory.createSalt()).thenReturn("salt");
 		Mockito.when(passwordHasher.ashPassword(anyString(), anyString())).thenReturn("");
-		User user = userDaoService.createUser(null, null);
+		UserEntity user = userDaoService.createUser(null, null);
 	}
 
 	@Test
