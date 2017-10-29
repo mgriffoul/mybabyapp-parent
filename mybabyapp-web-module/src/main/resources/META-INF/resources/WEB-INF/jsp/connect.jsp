@@ -18,7 +18,7 @@
 
 <p style="color: red">${failureMessage}</p>
 
-<form method = "POST" action = "login" name="f">
+<form method="POST" action="login" name="f">
 
 
 	<label for="username">Username</label>

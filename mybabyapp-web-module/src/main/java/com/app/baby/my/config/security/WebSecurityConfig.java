@@ -30,12 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.successForwardUrl("/home")
 				.failureForwardUrl("/connect/failed").permitAll()
 				.and()
-				.httpBasic()
-				.and()
-				.logout()
-				.logoutSuccessUrl("/connect")
-				.logoutUrl("/logout")
-				.permitAll();
+				.httpBasic();
 	}
 
 	@Override

@@ -30,6 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	/**
 	 * fournit la methode d'authentifacation par défaut
+	 * Le Principal du spring security context contient un UserDto
 	 * @param authentication
 	 * @return
 	 * @throws AuthenticationException
@@ -59,7 +60,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 			logger.info("Authentification réalisée avec succès");
 
-			return new UsernamePasswordAuthenticationToken(userDto.getMail(), userDto.getPassword(), grantedAuthorityList);
+			return new UsernamePasswordAuthenticationToken(userDto, userDto.getPassword(), grantedAuthorityList);
 		}else {
 			logger.error("Echec de l'authentification ");
 			throw new BadCredentialsException("L'authentification a échoué.");

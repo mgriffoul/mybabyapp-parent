@@ -4,6 +4,7 @@ import com.app.baby.my.dto.UserDto;
 import com.app.baby.my.entitys.UserEntity;
 
 /**
+ * Mapper contains all mapping functions for UserDto
  * Created by mathieu_griffoul on 21/10/2017.
  */
 public class UserDtoMapper {
@@ -24,8 +25,21 @@ public class UserDtoMapper {
 			if(userEntity.getPassword()!=null){
 				userDto.setPassword(userEntity.getPassword());
 			}
-			if(userEntity.getSalt()!=null){
+
+			if(userEntity.getSalt() != null){
 				userDto.setSalt(userEntity.getSalt());
+			}
+
+			userDto.setAllSignUpInfoGiven(userEntity.isAllSignUpInfoGiven());
+
+			if(userEntity.getCreationDateTime()!=null){
+				userDto.setCreationDateTime(userDto.getCreationDateTime());
+			}
+			if(userEntity.getFirstName()!=null){
+				userDto.setFirstName(userEntity.getFirstName());
+			}
+			if(userEntity.getLastName()!=null){
+				userDto.setLastName(userEntity.getLastName());
 			}
 		}
 

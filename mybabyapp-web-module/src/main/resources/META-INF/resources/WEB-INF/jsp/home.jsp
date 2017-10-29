@@ -26,13 +26,12 @@
 
 <p>${userLogin}</p>
 
-
-<form method="post" action="logout" name="f">
+<form:form method="post" action="logout" name="f">
 	<input type="hidden"
 		   name="${_csrf.parameterName}"
 		   value="${_csrf.token}"/>
 	<button type="submit" class="btn">Deconnexion</button>
-</form>
+</form:form>
 
 </body>
 </html>
