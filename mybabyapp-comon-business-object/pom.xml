@@ -4,9 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.app.baby.my</groupId>
-	<artifactId>mybabyapp-comon-dao-entitys</artifactId>
+	<artifactId>mybabyapp-comon-business-object</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+
+	<name>mybabyapp-comon-business-object</name>
+	<description>Comon business object layer</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -14,9 +17,6 @@
 		<version>1.5.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
-	<name>mybabyapp-comon-dao-entitys</name>
-	<description>comon dao entitys layer</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,12 +35,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>

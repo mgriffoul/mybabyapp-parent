@@ -52,7 +52,7 @@ public class UserCreationController {
 		} else {
 			try {
 				model.put("user", userService.createUser(userCreationModel.getMail(), userCreationModel.getPassword()));
-				return "confirm";
+				return "home";
 			} catch(Exception e) {
 				logger.error("La création du compte a échoué.");
 				model.addAttribute("message", "Mongo erreur");

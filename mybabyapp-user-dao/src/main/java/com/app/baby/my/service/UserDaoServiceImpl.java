@@ -1,6 +1,8 @@
 package com.app.baby.my.service;
 
 
+import java.time.LocalDateTime;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,6 @@ public class UserDaoServiceImpl implements IUserDaoService {
 		this.passwordHasher = passwordHasher;
 	}
 
-
 	/**
 	 * Méthode de création du User prenant en entrée mail et password.
 	 * Le password est salé puis haché puis le user est envoyé au Dao
@@ -46,7 +47,7 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	public UserEntity createUser(String mail, String password) {
 		String salt = passwordSaltFactory.createSalt();
 		String hashedPassword = passwordHasher.ashPassword(password, salt);
-		UserEntity user = UserEntity.userEntityBuilder().mail(mail).salt(salt).password(hashedPassword).build();
+		UserEntity user = UserEntity.userEntityBuilder().mail(mail).salt(salt).password(hashedPassword).creationDateTime(LocalDateTime.now()).build();
 		if (isNotEmpty(hashedPassword)) {
 			userDao.insert(user);
 		} else {
