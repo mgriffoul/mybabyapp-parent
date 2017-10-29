@@ -2,7 +2,7 @@ package com.app.baby.my.services;
 
 import org.apache.commons.lang3.StringUtils;
 import com.app.baby.my.dto.UserDto;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 import com.app.baby.my.mapper.UserDtoMapper;
 import com.app.baby.my.service.IUserDaoService;
 import com.mongodb.MongoException;
@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 	@Override
 	public UserDto createUser(String mail, String password) throws Exception{
 		if (StringUtils.isNotBlank(mail) && StringUtils.isNotBlank(password)){
-			User user = userDaoService.createUser(mail, password);
+			UserEntity user = userDaoService.createUser(mail, password);
 			return userDtoMapper.mapUserEntityToUserDto(user);
 		}else {
 			throw  new MongoException("Le mail et le mot de passe ne peuvent pas être null, vide ou remplit d'espace.");
@@ -46,7 +46,7 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public UserDto finUserByMail(String mail) {
-		User user = userDaoService.findUserByMail(mail);
+		UserEntity user = userDaoService.findUserByMail(mail);
 		return userDtoMapper.mapUserEntityToUserDto(user);
 	}
 

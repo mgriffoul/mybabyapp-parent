@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.app.baby.my.dao.IUserDao;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 import com.app.baby.my.util.PasswordHasher;
 import com.app.baby.my.util.PasswordSaltFactory;
 import com.mongodb.MongoClientException;
@@ -43,10 +43,10 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	 * @throws Exception
 	 */
 	@Override
-	public User createUser(String mail, String password) {
+	public UserEntity createUser(String mail, String password) {
 		String salt = passwordSaltFactory.createSalt();
 		String hashedPassword = passwordHasher.ashPassword(password, salt);
-		User user = User.userBuilder().mail(mail).salt(salt).password(hashedPassword).build();
+		UserEntity user = UserEntity.userEntityBuilder().mail(mail).salt(salt).password(hashedPassword).build();
 		if (isNotEmpty(hashedPassword)) {
 			userDao.insert(user);
 		} else {
@@ -63,7 +63,7 @@ public class UserDaoServiceImpl implements IUserDaoService {
 	 * @return
 	 */
 	@Override
-	public User findUserByMail(String mail) {
+	public UserEntity findUserByMail(String mail) {
 		return userDao.findByMail(mail);
 	}
 

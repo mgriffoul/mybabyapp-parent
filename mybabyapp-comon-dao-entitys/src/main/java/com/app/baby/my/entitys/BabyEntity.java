@@ -1,14 +1,16 @@
-package com.app.baby.my.entity;
+package com.app.baby.my.entitys;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import com.app.baby.my.enums.ESexe;
 
 /**
- * Created by mathieu_griffoul on 15/10/2017.
+ * Created by mathieu_griffoul on 29/10/2017.
  */
-public class Baby implements Serializable{
+@Document(collection = "babys")
+public class BabyEntity implements Serializable {
 
 	private String id;
 	private String firstName;
@@ -47,54 +49,46 @@ public class Baby implements Serializable{
 		this.sexe = sexe;
 	}
 
-	public static BabyBuilder builder() {
-		return new BabyBuilder();
+	public static BabyEntityBuilder babyEntityBuilder() {
+		return new BabyEntityBuilder();
 	}
 
-	public static final class BabyBuilder {
+	public static final class BabyEntityBuilder {
 		private String id;
 		private String firstName;
 		private LocalDateTime birthDate;
 		private ESexe sexe;
 
-		private BabyBuilder() {
+		private BabyEntityBuilder() {
 		}
 
-		public BabyBuilder id(String id) {
+		public BabyEntityBuilder id(String id) {
 			this.id = id;
 			return this;
 		}
 
-		public BabyBuilder firstName(String firstName) {
+		public BabyEntityBuilder firstName(String firstName) {
 			this.firstName = firstName;
 			return this;
 		}
 
-		public BabyBuilder birthDate(LocalDateTime birthDate) {
+		public BabyEntityBuilder birthDate(LocalDateTime birthDate) {
 			this.birthDate = birthDate;
 			return this;
 		}
 
-		public BabyBuilder sexe(ESexe sexe) {
+		public BabyEntityBuilder sexe(ESexe sexe) {
 			this.sexe = sexe;
 			return this;
 		}
 
-		public Baby build() {
-			Baby baby = new Baby();
-			baby.setId(id);
-			baby.setFirstName(firstName);
-			baby.setBirthDate(birthDate);
-			baby.setSexe(sexe);
-			return baby;
+		public BabyEntity build() {
+			BabyEntity babyEntity = new BabyEntity();
+			babyEntity.setId(id);
+			babyEntity.setFirstName(firstName);
+			babyEntity.setBirthDate(birthDate);
+			babyEntity.setSexe(sexe);
+			return babyEntity;
 		}
 	}
 }
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 package com.app.baby.my.mapper;
 
 import com.app.baby.my.dto.UserDto;
-import com.app.baby.my.entity.User;
+import com.app.baby.my.entitys.UserEntity;
 
 /**
  * Created by mathieu_griffoul on 21/10/2017.
@@ -13,7 +13,7 @@ public class UserDtoMapper {
 	 * @param userEntity
 	 * @return
 	 */
-	public UserDto mapUserEntityToUserDto(User userEntity){
+	public UserDto mapUserEntityToUserDto(UserEntity userEntity){
 
 		UserDto userDto = new UserDto();
 

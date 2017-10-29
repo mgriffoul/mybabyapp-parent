@@ -1,4 +1,4 @@
-package com.app.baby.my.entity;
+package com.app.baby.my.entitys;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -7,26 +7,25 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Created by mathieu_griffoul on 15/10/2017.
+ * Created by mathieu_griffoul on 29/10/2017.
  */
-@Document (collection = "users")
-public class User implements Serializable{
+@Document(collection = "users")
+public class UserEntity implements Serializable{
 
 	@Id
 	private String mail;
 
 	private String password;
 	private String salt;
-	private Baby baby;
+	private BabyEntity baby;
 	private String firstName;
 	private String lastName;
 	private LocalDateTime creationDateTime;
 
-
-	public User() {
+	public UserEntity() {
 	}
 
-	public User(String mail, String password) {
+	public UserEntity(String mail, String password) {
 		this.mail = mail;
 		this.password = password;
 	}
@@ -55,11 +54,11 @@ public class User implements Serializable{
 		this.salt = salt;
 	}
 
-	public Baby getBaby() {
+	public BabyEntity getBaby() {
 		return baby;
 	}
 
-	public void setBaby(Baby baby) {
+	public void setBaby(BabyEntity baby) {
 		this.baby = baby;
 	}
 
@@ -87,81 +86,69 @@ public class User implements Serializable{
 		this.creationDateTime = creationDateTime;
 	}
 
-	@Override
-	public String toString() {
-		return "User{" +
-				"mail='" + mail + '\'' +
-				", password='" + password + '\'' +
-				", salt='" + salt + '\'' +
-				", baby=" + baby +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", creationDateTime=" + creationDateTime +
-				'}';
+	public static UserEntityBuilder userEntityBuilder() {
+		return new UserEntityBuilder();
 	}
 
-	public static UserBuilder userBuilder() {
-		return new UserBuilder();
-	}
-
-
-	public static final class UserBuilder {
+	public static final class UserEntityBuilder {
 		private String mail;
 		private String password;
 		private String salt;
-		private Baby baby;
+		private BabyEntity baby;
 		private String firstName;
 		private String lastName;
 		private LocalDateTime creationDateTime;
 
-		private UserBuilder() {
+		private UserEntityBuilder() {
 		}
 
-		public UserBuilder mail(String mail) {
+
+
+		public UserEntityBuilder mail(String mail) {
 			this.mail = mail;
 			return this;
 		}
 
-		public UserBuilder password(String password) {
+		public UserEntityBuilder password(String password) {
 			this.password = password;
 			return this;
 		}
 
-		public UserBuilder salt(String salt) {
+		public UserEntityBuilder salt(String salt) {
 			this.salt = salt;
 			return this;
 		}
 
-		public UserBuilder baby(Baby baby) {
+		public UserEntityBuilder baby(BabyEntity baby) {
 			this.baby = baby;
 			return this;
 		}
 
-		public UserBuilder firstName(String firstName) {
+		public UserEntityBuilder firstName(String firstName) {
 			this.firstName = firstName;
 			return this;
 		}
 
-		public UserBuilder lastName(String lastName) {
+		public UserEntityBuilder lastName(String lastName) {
 			this.lastName = lastName;
 			return this;
 		}
 
-		public UserBuilder creationDateTime(LocalDateTime creationDateTime) {
+		public UserEntityBuilder creationDateTime(LocalDateTime creationDateTime) {
 			this.creationDateTime = creationDateTime;
 			return this;
 		}
 
-		public User build() {
-			User user = new User();
-			user.setMail(mail);
-			user.setPassword(password);
-			user.setSalt(salt);
-			user.setBaby(baby);
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setCreationDateTime(creationDateTime);
-			return user;
+		public UserEntity build() {
+			UserEntity userEntity = new UserEntity();
+			userEntity.setMail(mail);
+			userEntity.setPassword(password);
+			userEntity.setSalt(salt);
+			userEntity.setBaby(baby);
+			userEntity.setFirstName(firstName);
+			userEntity.setLastName(lastName);
+			userEntity.setCreationDateTime(creationDateTime);
+			return userEntity;
 		}
 	}
 }
