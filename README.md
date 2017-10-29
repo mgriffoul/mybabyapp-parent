@@ -5,9 +5,13 @@
 linux : https://docs.mongodb.com/v2.8/administration/install-on-linux/
 windows : https://docs.mongodb.com/v2.8/tutorial/install-mongodb-on-windows/
 
-Lancer une instance de MongoDb en laissant les paramêtres par défaut (vous pouvez personnaliser le dossier de destination de Mongo), et c'est tout.
+* Lancer une instance de MongoDb en laissant les paramêtres par défaut (vous pouvez personnaliser le dossier de destination de Mongo), et c'est tout.
 
-Ensuite il suffit de lancer la classe Main dans la classe MybabyappWebModuleApplication. L'application se lance sur le port 8080 et possède un jeu de Jsp pour tester les premiers développements.
+* Ensuite il suffit de lancer la classe Main dans la classe MybabyappWebModuleApplication. L'application se lance sur le port 8080 et possède un jeu de Jsp pour tester les premiers développements.
+
+* Un administrateur de base de donnée comme Compass est très utile pour manager ses données en base et vérifier les opérations CRUD.
+https://www.mongodb.com/products/compass
+
 
 # Pour lancer l'application front:
 
